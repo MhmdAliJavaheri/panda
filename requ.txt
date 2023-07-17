@@ -1,0 +1,5 @@
+django
+psycopg2-binary
+crispy_forms
+crispy_bootstrap4
+phonenumber_field
