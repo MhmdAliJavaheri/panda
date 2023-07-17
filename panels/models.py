@@ -16,16 +16,18 @@ class Auther(models.Model):
         return self.nick_name
 
     def serialize(self):
+        books = [bok.serialize() for bok in self.books.all()]
         return dict(
             nickName=self.nick_name,
-            modified=self.modified_at
+            modified=self.modified_at,
+            books=books
         )
 
 
 class Publisher(models.Model):
     name = models.CharField(max_length=100)
     phone_number = PhoneNumberField(unique=False, null=False, blank=False)
-    location = models.TextField(null=True)
+    location = models.TextField(null=True, blank=True)
     modified_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -43,6 +45,7 @@ class Publisher(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=100)
     pages = models.IntegerField()
+    summery = models.TextField(null=True, blank=True)
     publisher_year = models.DateTimeField(default=timezone.now())
     modified_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
