@@ -4,9 +4,10 @@ from django.db import models
 
 
 class Client(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    passworld = models.CharField(max_length=100)
+    username = models.CharField(max_length=128)
+    first_name = models.CharField(max_length=128)
+    last_name = models.CharField(max_length=128)
+    passworld = models.CharField(max_length=128)
 
     def __str__(self) -> str:
         return f'{self.first_name}'
