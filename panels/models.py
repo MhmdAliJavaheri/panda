@@ -1,5 +1,4 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 from django.utils import timezone
 from clients.models import Client
 # Create your models here.
@@ -26,7 +25,7 @@ class Auther(models.Model):
 
 class Publisher(models.Model):
     name = models.CharField(max_length=100)
-    phone_number = PhoneNumberField(unique=False, null=False, blank=False)
+    phone_number = models.CharField(unique=False, null=False, blank=False)
     location = models.TextField(null=True, blank=True)
     modified_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -46,7 +45,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     pages = models.IntegerField()
     summery = models.TextField(null=True, blank=True)
-    publisher_year = models.DateTimeField(default=timezone.now())
+    publish_year = models.DateTimeField(default=timezone.now)
     modified_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

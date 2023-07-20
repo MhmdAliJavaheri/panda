@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
+
+<h1>Management System</h1>
+<br />
+
+<form method="POST">
+  {% csrf_token %} {{form|crispy}}
+  <br />
+  <button class="btn btn-secondary" type="submit">Insert</button>
+  <br />
+  <br />
+  <button class="btn btn-danger" type="submit">Delete</button>
+  <br />
+  <br />
+  <button class="btn btn-info" type="submit">Edit</button>
+</form>
+<br />
+{% for item in query %}
+<div class="card text-white bg-info mb-3" style="max-width: 18rem">
+  <div class="card-header">
+    {% comment %}
+    <a class="link-dark" href="{% url 'TaskDetail' item.pk %}"
+      >{{ item.category }}</a
+    >
+    {% endcomment %}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ item.name }}</h5>
+    <p class="card-text">{{ item.phone_number }}</p>
+  </div>
+</div>
+{% endfor %} {% endblock content %}

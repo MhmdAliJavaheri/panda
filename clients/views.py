@@ -1,16 +1,35 @@
 from django.conf import settings
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from utils.decorators.form_validation import Request
 
 from utils.decorators.method_allowed import method_allowed
 from django.views.decorators.csrf import csrf_exempt
 from .models import Client
+from .forms import ClientCreateForm
 
 from utils.exceptions import LinkExpiredException, ClientDuplicateException, InvalidUsernameException, \
     IncorrectPasswordException
 from utils.response import HTTPResponseSuccess
 # Create your views here.
 
+
+def show_user(request):
+    query = Client.objects.all().order_by('username')
+
+    form = ClientCreateForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/')
+    else:
+        form = ClientCreateForm
+
+    dict = {
+        'query': query,
+        'form': form,
+    }
+
+    return render(request, 'panel/index.html', dict)
 
 # @csrf_exempt
 # @method_allowed(['POST'])

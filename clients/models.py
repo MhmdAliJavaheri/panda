@@ -7,7 +7,7 @@ class Client(models.Model):
     username = models.CharField(max_length=128)
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
-    passworld = models.CharField(max_length=128)
+    password = models.CharField(max_length=128)
 
     def __str__(self) -> str:
         return f'{self.first_name}'
