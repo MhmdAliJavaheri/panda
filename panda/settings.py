@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'clients',
     'panels',
+    'library',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
